@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Secteurs d'intervention autour de Lyon (100 km) — Amiltone Immobilier</title>
-<meta name="description" content="Amiltone Immobilier intervient sur Lyon et un rayon d'environ 100 km : Caluire, Villefranche-sur-Saône, Belleville, Saint-Fons et de nombreuses autres communes.">
+<meta name="description" content="Amiltone Immobilier intervient sur Lyon et un rayon d'environ 100 km : Caluire, Villefranche-sur-Saône, Trévoux, Saint-Fons et de nombreuses autres communes.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.amiltone-lyon.com/secteurs.html">
 <meta name="author" content="Amiltone Immobilier">
@@ -14,17 +14,19 @@
 <meta name="ICBM" content="45.764043, 4.835659">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Secteurs d'intervention autour de Lyon (100 km) — Amiltone Immobilier">
-<meta property="og:description" content="Amiltone Immobilier intervient sur Lyon et un rayon d'environ 100 km : Caluire, Villefranche-sur-Saône, Belleville, Saint-Fons et de nombreuses autres communes.">
+<meta property="og:description" content="Amiltone Immobilier intervient sur Lyon et un rayon d'environ 100 km : Caluire, Villefranche-sur-Saône, Trévoux, Saint-Fons et de nombreuses autres communes.">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="Amiltone Immobilier">
 <meta property="og:image" content="https://www.amiltone-lyon.com/images/hero.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Secteurs d'intervention autour de Lyon (100 km) — Amiltone Immobilier">
-<meta name="twitter:description" content="Amiltone Immobilier intervient sur Lyon et un rayon d'environ 100 km : Caluire, Villefranche-sur-Saône, Belleville, Saint-Fons et de nombreuses autres communes.">
+<meta name="twitter:description" content="Amiltone Immobilier intervient sur Lyon et un rayon d'environ 100 km : Caluire, Villefranche-sur-Saône, Trévoux, Saint-Fons et de nombreuses autres communes.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -42,7 +44,7 @@
     "addressRegion": "Auvergne-Rhone-Alpes",
     "addressCountry": "FR"
   },
-  "telephone": "+33652691476",
+  "telephone": "+33400000000",
   "priceRange": "EUR-EUR",
   "url": "https://www.amiltone-lyon.com/"
 }
@@ -82,26 +84,13 @@
   <section class="section">
     <div class="wrap">
       <div class="map-wrap">
-        <div class="map-svg">
-          <svg viewBox="0 0 400 320" role="img" aria-label="Carte indicative des secteurs dans un rayon de 100 km autour de Lyon">
-            <rect width="400" height="320" fill="#faf9f6" rx="14"/>
-            <circle cx="200" cy="170" r="130" fill="none" stroke="#e4e2dc" stroke-width="1.4" stroke-dasharray="4 6"/>
-            <path d="M40 260 C 90 200, 130 180, 160 120 C 180 80, 220 60, 260 70 C 300 80, 330 120, 360 100" stroke="#e4e2dc" stroke-width="10" fill="none" stroke-linecap="round" opacity=".7"/>
-            <g class="map-pin" data-nav="biens"><circle cx="200" cy="170" r="7" fill="#15150f"/><text x="213" y="174" font-family="Work Sans" font-size="13" fill="#15150f" font-weight="600">Lyon</text></g>
-            <g class="map-pin" data-nav="biens"><circle cx="150" cy="120" r="5" fill="#3d3c36"/><text x="160" y="124" font-family="Work Sans" font-size="12" fill="#6b675c">Caluire</text></g>
-            <g class="map-pin" data-nav="biens"><circle cx="90" cy="90" r="5" fill="#3d3c36"/><text x="100" y="94" font-family="Work Sans" font-size="12" fill="#6b675c">Genay</text></g>
-            <g class="map-pin" data-nav="biens"><circle cx="60" cy="60" r="5" fill="#3d3c36"/><text x="70" y="64" font-family="Work Sans" font-size="12" fill="#6b675c">Villefranche</text></g>
-            <g class="map-pin" data-nav="biens"><circle cx="255" cy="200" r="5" fill="#3d3c36"/><text x="265" y="204" font-family="Work Sans" font-size="12" fill="#6b675c">Saint-Fons</text></g>
-            <g class="map-pin" data-nav="biens"><circle cx="120" cy="220" r="5" fill="#3d3c36"/><text x="130" y="224" font-family="Work Sans" font-size="12" fill="#6b675c">Montceaux</text></g>
-            <text x="200" y="52" text-anchor="middle" font-family="Work Sans" font-size="11" fill="#3d3c36">≈ 100 km</text>
-          </svg>
-        </div>
+        <div id="map" role="img" aria-label="Carte interactive des secteurs dans un rayon de 100 km autour de Lyon"></div>
         <div class="map-list">
-          <div class="map-row" data-nav="biens"><span class="pin"></span><span class="city">Lyon &amp; Caluire</span><span class="count">exemples</span></div>
-          <div class="map-row" data-nav="biens"><span class="pin"></span><span class="city">Villefranche-sur-Saône</span><span class="count">exemples</span></div>
-          <div class="map-row" data-nav="biens"><span class="pin"></span><span class="city">Genay &amp; Parcieux</span><span class="count">exemples</span></div>
-          <div class="map-row" data-nav="biens"><span class="pin"></span><span class="city">Saint-Fons</span><span class="count">exemples</span></div>
-          <div class="map-row" data-nav="biens"><span class="pin"></span><span class="city">Montceaux (01)</span><span class="count">exemples</span></div>
+          <div class="map-row" data-lat="45.7930" data-lng="4.8508"><span class="pin"></span><span class="city">Lyon &amp; Caluire</span><span class="count">exemples</span></div>
+          <div class="map-row" data-lat="45.9880" data-lng="4.7160"><span class="pin"></span><span class="city">Villefranche-sur-Saône</span><span class="count">exemples</span></div>
+          <div class="map-row" data-lat="45.9420" data-lng="4.7730"><span class="pin"></span><span class="city">Trévoux &amp; Parcieux</span><span class="count">exemples</span></div>
+          <div class="map-row" data-lat="45.7080" data-lng="4.8560"><span class="pin"></span><span class="city">Saint-Fons</span><span class="count">exemples</span></div>
+          <div class="map-row" data-lat="46.0450" data-lng="4.7550"><span class="pin"></span><span class="city">Monceaux (01)</span><span class="count">exemples</span></div>
         </div>
       </div>
     </div>
@@ -113,7 +102,7 @@
         <p>Liste non exhaustive — donnée à titre indicatif sur un rayon d'environ 100 km autour de Lyon.</p>
       </div>
       <div class="zones-list">
-        <span class="zone-chip">Lyon</span><span class="zone-chip">Caluire-et-Cuire</span><span class="zone-chip">Villefranche-sur-Saône</span><span class="zone-chip">Genay</span><span class="zone-chip">Belleville</span><span class="zone-chip">Saint-Fons</span><span class="zone-chip">Parcieux</span><span class="zone-chip">Sathonay-Camp</span><span class="zone-chip">Rillieux-la-Pape</span>
+        <span class="zone-chip">Lyon</span><span class="zone-chip">Caluire-et-Cuire</span><span class="zone-chip">Villefranche-sur-Saône</span><span class="zone-chip">Trévoux</span><span class="zone-chip">Belleville</span><span class="zone-chip">Saint-Fons</span><span class="zone-chip">Parcieux</span><span class="zone-chip">Sathonay-Camp</span><span class="zone-chip">Rillieux-la-Pape</span>
       </div>
     </div>
   </section>
@@ -131,7 +120,7 @@
     </div>
     <div>
       <h4>Contact</h4>
-      <ul><li>06 52 69 14 76</li><li>contactpbimmo@gmail.com</li><li>Lyon, France</li></ul>
+      <ul><li>04 00 00 00 00</li><li>contact@amiltone-lyon.com</li><li>Lyon, France</li></ul>
     </div>
   </div>
   <div class="wrap foot-bottom">
@@ -141,5 +130,35 @@
 </footer>
 
 <script src="script.js"></script>
+<script>
+(function(){
+  var LYON = [45.7640, 4.8357];
+  var map = L.map('map', {scrollWheelZoom:false}).setView(LYON, 9);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 18
+  }).addTo(map);
+
+  // Rayon indicatif d'environ 100 km autour de Lyon
+  L.circle(LYON, {radius:100000, color:'#3d3c36', weight:1.4, dashArray:'6 8', fillColor:'#3d3c36', fillOpacity:0.04}).addTo(map);
+
+  var markerIcon = L.divIcon({className:'', html:'<span style="display:block;width:14px;height:14px;border-radius:50%;background:#15150f;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4);"></span>', iconSize:[14,14], iconAnchor:[7,7]});
+
+  document.querySelectorAll('.map-row[data-lat]').forEach(function(row){
+    var lat = parseFloat(row.getAttribute('data-lat'));
+    var lng = parseFloat(row.getAttribute('data-lng'));
+    var city = row.querySelector('.city').textContent;
+    var marker = L.marker([lat,lng], {icon:markerIcon}).addTo(map);
+    marker.bindPopup('<strong>'+city+'</strong><br><a href="biens.html">Voir les biens</a>');
+    row.style.cursor = 'pointer';
+    row.addEventListener('click', function(){
+      map.flyTo([lat,lng], 11);
+      marker.openPopup();
+    });
+  });
+
+  L.marker(LYON, {icon:markerIcon}).addTo(map).bindPopup('<strong>Lyon</strong><br><a href="biens.html">Voir les biens</a>');
+})();
+</script>
 </body>
 </html>
