@@ -202,6 +202,21 @@ if(fullGrid){
   openFromHash();
 }
 
+// ---- PARALLAXE DU HERO : l'image défile moins vite que la page ----
+var heroEl = document.querySelector('.hero, .page-hero');
+if(heroEl && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  var ticking = false;
+  var updateParallax = function(){
+    var y = Math.min(window.scrollY, heroEl.offsetHeight);
+    heroEl.style.setProperty('--parallax', (y * 0.4).toFixed(1) + 'px');
+    ticking = false;
+  };
+  window.addEventListener('scroll', function(){
+    if(!ticking){ ticking = true; requestAnimationFrame(updateParallax); }
+  }, {passive:true});
+  updateParallax();
+}
+
 // ---- NAV ACTIVE STATE (basé sur data-page du body) ----
 var currentPage = document.body.getAttribute('data-page') || 'accueil';
 document.querySelectorAll('.navlinks a[data-nav]').forEach(function(a){
