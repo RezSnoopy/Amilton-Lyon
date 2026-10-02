@@ -25,6 +25,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/x-icon" href="images/favicons/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicons/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="images/favicons/favicon-48x48.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#15150f">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -91,23 +98,25 @@
           <div>— Visite sur place si nécessaire</div>
         </div>
       </div>
-      <form class="form-card" onsubmit="return false;">
+      <form class="form-card" action="https://formspree.io/f/REMPLACER_PAR_TON_ID" method="POST">
+        <input type="hidden" name="_subject" value="Nouvelle demande d'estimation — Amiltone">
+        <input type="hidden" name="_next" value="https://www.amiltone-lyon.com/merci.html">
         <div class="form-row">
-          <div><label>Prénom</label><input type="text" placeholder="Prénom"></div>
-          <div><label>Nom</label><input type="text" placeholder="Nom"></div>
+          <div><label for="est-prenom">Prénom</label><input id="est-prenom" name="prenom" type="text" placeholder="Prénom" required></div>
+          <div><label for="est-nom">Nom</label><input id="est-nom" name="nom" type="text" placeholder="Nom" required></div>
         </div>
         <div class="form-row">
-          <div><label>Téléphone</label><input type="tel" placeholder="06 00 00 00 00"></div>
-          <div><label>Email</label><input type="email" placeholder="vous@email.com"></div>
+          <div><label for="est-tel">Téléphone</label><input id="est-tel" name="telephone" type="tel" placeholder="06 00 00 00 00" required></div>
+          <div><label for="est-email">Email</label><input id="est-email" name="_replyto" type="email" placeholder="vous@email.com" required></div>
         </div>
         <div class="form-row">
-          <div class="full"><label>Adresse du bien</label><input type="text" placeholder="Ville ou adresse"></div>
+          <div class="full"><label for="est-adresse">Adresse du bien</label><input id="est-adresse" name="adresse" type="text" placeholder="Ville ou adresse" required></div>
         </div>
         <div class="form-row">
-          <div><label>Type de bien</label><select><option>Appartement</option><option>Maison</option><option>Terrain</option></select></div>
-          <div><label>Surface (m²)</label><input type="number" placeholder="ex : 75"></div>
+          <div><label for="est-type">Type de bien</label><select id="est-type" name="type_bien"><option>Appartement</option><option>Maison</option><option>Terrain</option></select></div>
+          <div><label for="est-surface">Surface (m²)</label><input id="est-surface" name="surface" type="number" placeholder="ex : 75"></div>
         </div>
-        <button class="btn btn-dark">Recevoir mon estimation</button>
+        <button class="btn btn-dark" type="submit">Recevoir mon estimation</button>
       </form>
     </div>
   </section>
@@ -125,7 +134,7 @@
     </div>
     <div>
       <h4>Contact</h4>
-      <ul><li>06 52 69 14 76</li><li>contactpbimmo@gmail.com</li><li>Lyon, France</li></ul>
+      <ul><li><a href="tel:+33652691476">06 52 69 14 76</a></li><li><a href="mailto:contactpbimmo@gmail.com">contactpbimmo@gmail.com</a></li><li>Lyon, France</li></ul>
     </div>
   </div>
   <div class="wrap foot-bottom">

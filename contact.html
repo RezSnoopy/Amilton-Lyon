@@ -25,6 +25,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/x-icon" href="images/favicons/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicons/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="images/favicons/favicon-48x48.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#15150f">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -85,23 +92,25 @@
         <h2>Nos coordonnées</h2>
         <p class="desc">Notre équipe vous répond sous 24h ouvrées.</p>
         <div class="contact-info">
-          <div><span class="label">Téléphone</span><span class="value">06 52 69 14 76</span></div>
-          <div><span class="label">Email</span><span class="value">contactpbimmo@gmail.com</span></div>
+          <div><span class="label">Téléphone</span><span class="value"><a href="tel:+33652691476">06 52 69 14 76</a></span></div>
+          <div><span class="label">Email</span><span class="value"><a href="mailto:contactpbimmo@gmail.com">contactpbimmo@gmail.com</a></span></div>
           <div><span class="label">Adresse</span><span class="value">Lyon, France</span></div>
         </div>
       </div>
-      <form class="form-card" onsubmit="return false;">
+      <form class="form-card" action="https://formspree.io/f/REMPLACER_PAR_TON_ID" method="POST">
+        <input type="hidden" name="_subject" value="Nouveau message — Amiltone Contact">
+        <input type="hidden" name="_next" value="https://www.amiltone-lyon.com/merci.html">
         <div class="form-row">
-          <div><label>Prénom</label><input type="text" placeholder="Prénom"></div>
-          <div><label>Nom</label><input type="text" placeholder="Nom"></div>
+          <div><label for="ct-prenom">Prénom</label><input id="ct-prenom" name="prenom" type="text" placeholder="Prénom" required></div>
+          <div><label for="ct-nom">Nom</label><input id="ct-nom" name="nom" type="text" placeholder="Nom" required></div>
         </div>
         <div class="form-row">
-          <div class="full"><label>Email</label><input type="email" placeholder="vous@email.com"></div>
+          <div class="full"><label for="ct-email">Email</label><input id="ct-email" name="_replyto" type="email" placeholder="vous@email.com" required></div>
         </div>
         <div class="form-row">
-          <div class="full"><label>Message</label><textarea rows="4" placeholder="Votre message"></textarea></div>
+          <div class="full"><label for="ct-message">Message</label><textarea id="ct-message" name="message" rows="4" placeholder="Votre message" required></textarea></div>
         </div>
-        <button class="btn btn-dark">Envoyer le message</button>
+        <button class="btn btn-dark" type="submit">Envoyer le message</button>
       </form>
     </div>
   </section>
@@ -119,7 +128,7 @@
     </div>
     <div>
       <h4>Contact</h4>
-      <ul><li>06 52 69 14 76</li><li>contactpbimmo@gmail.com</li><li>Lyon, France</li></ul>
+      <ul><li><a href="tel:+33652691476">06 52 69 14 76</a></li><li><a href="mailto:contactpbimmo@gmail.com">contactpbimmo@gmail.com</a></li><li>Lyon, France</li></ul>
     </div>
   </div>
   <div class="wrap foot-bottom">

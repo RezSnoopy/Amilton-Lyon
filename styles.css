@@ -206,6 +206,8 @@ html.modal-open{overflow:hidden;}
 .contact-info div{display:flex; flex-direction:column;}
 .contact-info .label{font-size:13px; color:var(--stone-deep); font-weight:700; margin-bottom:4px;}
 .contact-info .value{font-size:16px; font-weight:600;}
+.contact-info .value a:hover{color:var(--stone-deep);}
+footer ul a:hover{color:#fff;}
 
 /* FOOTER */
 footer{background:var(--footer); color:#fff; padding:64px 0 calc(32px + env(safe-area-inset-bottom,0px));}
