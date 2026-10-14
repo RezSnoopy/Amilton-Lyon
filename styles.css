@@ -73,6 +73,7 @@ header{position:sticky; top:0; z-index:50; background:rgba(255,255,255,.94); bac
 /* QUI SOMMES-NOUS */
 .about-grid{display:grid; grid-template-columns:.9fr 1.1fr; gap:56px; align-items:center;}
 .about-art{border:1px solid var(--line); border-radius:20px; background:#faf9f6; padding:24px;}
+.about-art img{display:block; width:100%; max-width:none; aspect-ratio:320/280; object-fit:contain; padding:8% 12%; background:#efe9dc; border-radius:12px;}
 .about-copy p{color:var(--muted); font-size:16px; margin-bottom:16px;}
 .about-copy .signature{margin-top:24px; font-family:'Archivo',sans-serif; font-weight:700; font-size:15px;}
 .about-copy .signature span{display:block; font-family:'Work Sans',sans-serif; font-weight:400; color:var(--muted); font-size:13.5px; margin-top:2px;}
