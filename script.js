@@ -32,7 +32,7 @@ function bienCover(b){ return 'images/biens/'+b.id+'/'+b.id+'-cover.webp'; }
 function escAttr(s){ return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
 
 function bienCard(b){
-  return '<a class="bien-card" href="biens.html#'+b.id+'" id="bien-'+b.id+'" data-id="'+b.id+'" data-type="'+b.type+'">'+
+  return '<a class="bien-card" href="biens/'+b.id+'.html" id="bien-'+b.id+'" data-id="'+b.id+'" data-type="'+b.type+'">'+
     '<div class="bien-media"><img src="'+bienCover(b)+'" alt="'+escAttr(b.title)+'" width="800" height="600" loading="lazy" decoding="async">'+
     '<span class="bien-tag">'+b.tag+'</span>'+
     (b.badge ? '<span class="bien-badge">'+b.badge+'</span>' : '')+
@@ -94,7 +94,7 @@ function bienDetail(b){
     '<div class="bd-desc">'+desc+'</div>'+
     (dpe || notes ? '<div class="bd-block"><h3>Informations complémentaires</h3>'+dpe+'<div class="bd-notes">'+notes+'</div></div>' : '')+
     '<p class="bd-legal">Prix net, hors frais notarié, d\'enregistrement et de publicité foncière. Les informations sur les risques auxquels ce bien est exposé sont disponibles sur le site <a href="https://www.georisques.gouv.fr" target="_blank" rel="noopener">Géorisques</a>.</p>'+
-    '<div class="bd-actions"><a href="contact.html" class="btn btn-dark">Demander une visite</a><a href="contact.html" class="btn btn-ghost">Poser une question</a></div>';
+    '<div class="bd-actions"><a href="contact.html?bien='+b.id+'" class="btn btn-dark">Demander une visite</a><a href="contact.html" class="btn btn-ghost">Poser une question</a></div>';
 }
 
 var modal = null, current = null, idx = 1, lastFocus = null;
@@ -186,20 +186,21 @@ function closeBien(){
   if(lastFocus) lastFocus.focus();
 }
 
-var fullGrid = document.getElementById('biens-full-grid');
-if(fullGrid){
-  fullGrid.addEventListener('click', function(e){
-    var card = e.target.closest('.bien-card');
-    if(!card) return;
-    e.preventDefault();
-    openBien(card.getAttribute('data-id'));
+// Anciens liens biens.html#<id> : redirection vers la page du bien
+if(document.getElementById('biens-full-grid')){
+  var legacyId = location.hash.slice(1);
+  if(legacyId && BIENS.some(function(b){ return b.id === legacyId; })) location.replace('biens/'+legacyId+'.html');
+}
+
+// Page d'un bien : la galerie ouvre la visionneuse à la photo cliquée
+var bienPageId = document.body.getAttribute('data-bien');
+if(bienPageId){
+  document.querySelectorAll('.pb-photo').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      openBien(bienPageId);
+      showPhoto(+btn.getAttribute('data-n') || 1);
+    });
   });
-  var openFromHash = function(){
-    var id = location.hash.slice(1);
-    if(id && BIENS.some(function(b){ return b.id === id; })) openBien(id);
-  };
-  window.addEventListener('hashchange', openFromHash);
-  openFromHash();
 }
 
 // ---- PARALLAXE DU HERO : l'image défile moins vite que la page ----
@@ -237,6 +238,12 @@ if(burger && navlinks){
 (function(){
   var form = document.getElementById('formulaire');
   if(!form) return;
+  var bienParam = (location.search.match(/[?&]bien=([\w-]+)/) || [])[1];
+  var bienDemande = bienParam && BIENS.filter(function(b){ return b.id === bienParam; })[0];
+  var msg = form.querySelector('textarea[name="message"]');
+  if(bienDemande && msg && !msg.value){
+    msg.value = 'Bonjour, je souhaite organiser une visite pour le bien « '+bienDemande.title+' » ('+bienDemande.price+'). Merci de me recontacter.';
+  }
   if(/[?&]erreur=1/.test(location.search)){
     var err = form.querySelector('.form-error');
     if(err) err.hidden = false;

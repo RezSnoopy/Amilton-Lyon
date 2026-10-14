@@ -114,11 +114,11 @@
         <p>Deux mandats exceptionnels, hors de notre zone habituelle, confiés à l'agence pour leur caractère unique.</p>
       </div>
       <div class="biens-grid" style="grid-template-columns:repeat(2,1fr);">
-        <a href="biens.html#propriete-fontanes" class="bien-card" style="display:block; padding:22px; text-decoration:none;">
+        <a href="biens/propriete-fontanes.html" class="bien-card" style="display:block; padding:22px; text-decoration:none;">
           <h3 style="font-size:16.5px; font-weight:700; margin-bottom:6px;">Propriété en pierre — Fontanès (34270)</h3>
           <p style="color:var(--muted); font-size:14.5px;">Proche Montpellier, à environ 300 km de Lyon</p>
         </a>
-        <a href="biens.html#villa-republique-dominicaine" class="bien-card" style="display:block; padding:22px; text-decoration:none;">
+        <a href="biens/villa-republique-dominicaine.html" class="bien-card" style="display:block; padding:22px; text-decoration:none;">
           <h3 style="font-size:16.5px; font-weight:700; margin-bottom:6px;">Villa de prestige — République dominicaine</h3>
           <p style="color:var(--muted); font-size:14.5px;">Palmar de Los Lidos — hors France</p>
         </a>
@@ -189,7 +189,7 @@
   var rows = listEl.querySelectorAll('.map-row');
   SECTEURS.forEach(function(s, i){
     var popupHtml = '<strong>'+s.city+'</strong><br>' + s.biens.map(function(b){
-      return '<a href="biens.html#'+b.id+'">'+b.t+'</a>';
+      return '<a href="biens/'+b.id+'.html">'+b.t+'</a>';
     }).join('<br>');
     var marker = L.marker([s.lat, s.lng], {icon:markerIcon}).addTo(map);
     marker.bindPopup(popupHtml);
