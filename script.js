@@ -232,3 +232,17 @@ if(burger && navlinks){
     navlinks.classList.toggle('mobile-open', !open);
   });
 }
+
+// ---- FORMULAIRES ----
+(function(){
+  var form = document.getElementById('formulaire');
+  if(!form) return;
+  if(/[?&]erreur=1/.test(location.search)){
+    var err = form.querySelector('.form-error');
+    if(err) err.hidden = false;
+  }
+  form.addEventListener('submit', function(){
+    var btn = form.querySelector('button[type="submit"]');
+    if(btn){ btn.disabled = true; btn.textContent = 'Envoi en cours…'; }
+  });
+})();

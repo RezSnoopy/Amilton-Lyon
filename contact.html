@@ -98,15 +98,16 @@
           <div><span class="label">Adresse</span><span class="value">Lyon, France</span></div>
         </div>
       </div>
-      <form class="form-card" action="https://formspree.io/f/REMPLACER_PAR_TON_ID" method="POST">
-        <input type="hidden" name="_subject" value="Nouveau message — Amiltone Contact">
-        <input type="hidden" name="_next" value="https://www.amiltone-lyon.com/merci.html">
+      <form class="form-card" id="formulaire" action="/api/contact" method="POST">
+        <input type="hidden" name="formulaire" value="contact">
+        <div class="form-hp" aria-hidden="true"><label for="hp-contact">Ne pas remplir</label><input id="hp-contact" name="site_web" type="text" tabindex="-1" autocomplete="off"></div>
+        <p class="form-error" role="alert" hidden>Votre message n'a pas pu être envoyé. Vérifiez les champs ou appelez-nous au <a href="tel:+33652691476">06 52 69 14 76</a>.</p>
         <div class="form-row">
           <div><label for="ct-prenom">Prénom</label><input id="ct-prenom" name="prenom" type="text" placeholder="Prénom" required></div>
           <div><label for="ct-nom">Nom</label><input id="ct-nom" name="nom" type="text" placeholder="Nom" required></div>
         </div>
         <div class="form-row">
-          <div class="full"><label for="ct-email">Email</label><input id="ct-email" name="_replyto" type="email" placeholder="vous@email.com" required></div>
+          <div class="full"><label for="ct-email">Email</label><input id="ct-email" name="email" type="email" placeholder="vous@email.com" required></div>
         </div>
         <div class="form-row">
           <div class="full"><label for="ct-message">Message</label><textarea id="ct-message" name="message" rows="4" placeholder="Votre message" required></textarea></div>

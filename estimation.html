@@ -99,16 +99,17 @@
           <div>— Visite sur place si nécessaire</div>
         </div>
       </div>
-      <form class="form-card" action="https://formspree.io/f/REMPLACER_PAR_TON_ID" method="POST">
-        <input type="hidden" name="_subject" value="Nouvelle demande d'estimation — Amiltone">
-        <input type="hidden" name="_next" value="https://www.amiltone-lyon.com/merci.html">
+      <form class="form-card" id="formulaire" action="/api/contact" method="POST">
+        <input type="hidden" name="formulaire" value="estimation">
+        <div class="form-hp" aria-hidden="true"><label for="hp-estimation">Ne pas remplir</label><input id="hp-estimation" name="site_web" type="text" tabindex="-1" autocomplete="off"></div>
+        <p class="form-error" role="alert" hidden>Votre message n'a pas pu être envoyé. Vérifiez les champs ou appelez-nous au <a href="tel:+33652691476">06 52 69 14 76</a>.</p>
         <div class="form-row">
           <div><label for="est-prenom">Prénom</label><input id="est-prenom" name="prenom" type="text" placeholder="Prénom" required></div>
           <div><label for="est-nom">Nom</label><input id="est-nom" name="nom" type="text" placeholder="Nom" required></div>
         </div>
         <div class="form-row">
           <div><label for="est-tel">Téléphone</label><input id="est-tel" name="telephone" type="tel" placeholder="06 00 00 00 00" required></div>
-          <div><label for="est-email">Email</label><input id="est-email" name="_replyto" type="email" placeholder="vous@email.com" required></div>
+          <div><label for="est-email">Email</label><input id="est-email" name="email" type="email" placeholder="vous@email.com" required></div>
         </div>
         <div class="form-row">
           <div class="full"><label for="est-adresse">Adresse du bien</label><input id="est-adresse" name="adresse" type="text" placeholder="Ville ou adresse" required></div>

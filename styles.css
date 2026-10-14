@@ -225,3 +225,9 @@ footer ul a{cursor:pointer;}
 @media (max-width:900px){
   .hero::before, .page-hero::before{background-image:url("images/hero-900.webp");}
 }
+
+/* Formulaires */
+.form-hp{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;}
+.form-error{background:#fdecea; color:#8a1c12; border-radius:12px; padding:12px 16px; margin-bottom:16px; font-size:14px;}
+.form-error a{text-decoration:underline;}
+.form-card button[disabled]{opacity:.6; cursor:wait;}
