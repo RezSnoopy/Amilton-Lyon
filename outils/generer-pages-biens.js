@@ -22,9 +22,14 @@ const BIENS = ctx.BIENS;
 
 // ---- Gabarit commun (en-tête / pied de page) repris de biens.html ----
 const listing = read('biens.html');
-const HEADER = listing.slice(listing.indexOf('<header>'), listing.indexOf('</header>') + 9);
-const FOOTER = listing.slice(listing.indexOf('<footer'), listing.indexOf('</footer>') + 9);
-const HEAD_ASSETS = listing.slice(listing.indexOf('<link rel="preconnect"'), listing.indexOf('<meta name="theme-color"'))
+const between = (s, a, b) => {
+  const i = s.indexOf(a), j = s.indexOf(b);
+  if (i < 0 || j < 0 || j < i) throw new Error(`Repère introuvable dans biens.html : ${i < 0 ? a : b}`);
+  return s.slice(i, j);
+};
+const HEADER = between(listing, '<header>', '</header>') + '</header>';
+const FOOTER = between(listing, '<footer', '</footer>') + '</footer>';
+const HEAD_ASSETS = between(listing, '<link rel="preload" href="/fonts/', '<meta name="theme-color"')
   + '<meta name="theme-color" content="#15150f">';
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
