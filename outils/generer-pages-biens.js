@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Génère une page HTML statique par bien (biens/<id>.html) à partir des données BIENS de script.js,
+// Génère une page HTML statique par bien (biens/<id>.html) et les pages secteurs (secteurs/<slug>.html) à partir des données BIENS de script.js,
 // et met à jour sitemap.xml et la liste structurée de biens.html.
 // À relancer après chaque ajout / modification de bien :   node outils/generer-pages-biens.js
 
@@ -197,12 +197,15 @@ for (const f of fs.readdirSync(path.join(ROOT, 'biens'))) {
 }
 BIENS.forEach((b) => write(`biens/${b.id}.html`, page(b)));
 
+// ---- Pages secteurs ----
+const pagesSecteurs = require('./generer-pages-secteurs.js')({ BIENS, ctx, HEADER, FOOTER, HEAD_ASSETS, write, esc, SITE, fs, path, ROOT });
+
 // ---- Sitemap ----
 const today = new Date().toISOString().slice(0, 10);
 const pages = [
   ['/', 'weekly', '1.0'], ['/biens.html', 'weekly', '0.9'], ['/estimation.html', 'monthly', '0.8'],
   ['/contact.html', 'monthly', '0.7'], ['/secteurs.html', 'monthly', '0.6'], ['/avis.html', 'monthly', '0.5'],
-].concat(BIENS.map((b) => [`/biens/${b.id}.html`, 'weekly', '0.8']));
+].concat(pagesSecteurs.map((p) => [p, 'monthly', '0.7']), BIENS.map((b) => [`/biens/${b.id}.html`, 'weekly', '0.8']));
 write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages.map(([p, f, pr]) => `  <url>\n    <loc>${SITE}${p}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${f}</changefreq>\n    <priority>${pr}</priority>\n  </url>`).join('\n')}
@@ -220,4 +223,4 @@ if (listRe.test(listing)) {
   write('biens.html', listing.replace(listRe, `<script type="application/ld+json">\n${JSON.stringify(itemList, null, 2)}\n</script>`));
 }
 
-console.log(`${BIENS.length} pages biens générées, sitemap : ${pages.length} URL.`);
+console.log(`${BIENS.length} pages biens et ${pagesSecteurs.length} pages secteurs générées, sitemap : ${pages.length} URL.`);
